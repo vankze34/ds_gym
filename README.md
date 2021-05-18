@@ -1,2 +1,2 @@
 # ds_gym
-training place that is essential subject to be data scientist
+training place that is essential subject to be a data scientist
