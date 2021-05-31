@@ -16,7 +16,21 @@ details {padding : 1rem; white-space: pre-wrap;}
 
 <div class='question' id='Q1'>
 
-      <h4>1. 사원 번호가 10의 배수인 사람에게 선물을 증정하는 사내 이벤트가 열렸다. 대상자를 성(LAST_NAME)을 기준으로 오름차순 정렬하여 사원번호, 이름, 성 순으로 출력하라</h4>
+      <h4>1. 입사연도가 빠른 순으로 모든 사원의 성, 급여, 입사연도를 출력하라</h4>
+      
+      <details>
+            <summary>모범 답안</summary>
+            <strong>select</strong> last_name, salary, hire_date
+            <strong>from</strong> employees
+            <strong>order by </strong> hire_date;
+                    
+      </details>
+
+</div>
+
+<div class='question' id='Q2'>
+
+      <h4>2. 사원 번호가 10의 배수인 사람에게 선물을 증정하는 사내 이벤트가 열렸다. 대상자를 성(LAST_NAME)을 기준으로 오름차순 정렬하여 사원번호, 이름, 성 순으로 출력하라</h4>
       
       <details>
             <summary>모범 답안</summary>
@@ -42,5 +56,7 @@ details {padding : 1rem; white-space: pre-wrap;}
       </details>
 
 </div>
+
+
 </body>
 </html>
