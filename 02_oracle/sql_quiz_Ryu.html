@@ -51,7 +51,7 @@
             <summary>모범 답안</summary>
             <strong>select</strong> employee_id,round(end_date-start_date) as 소요기간
             <strong>from</strong> job_history
-            <strong>where</strong> round(end_date-start_date) > '1400';
+            <strong>where</strong> round(end_date-start_date) >= '1400';
 
             EMPLOYEE_ID   소요기간
             -------------------- ----------
@@ -67,10 +67,10 @@
 
 <div class=question id=Q3>
 
-      <h4>3. 부서번호가 60인 직원의 풀네임과 급여가 높은 순서대로 내림차순 정렬하시오.</h4>
+      <h4>3. 부서번호가 60인 직원의 풀네임(column 생성할것)과 급여가 높은 순서대로 내림차순 정렬하시오.</h4>
       <details>
             <summary>모범 답안</summary>
-            <strong>select</strong> first_name, last_name, salary
+            <strong>select</strong> first_name||last_name as FULL_NAME, salary
             <strong>from</strong> employees
             <strong>where</strong> department_id = 60
             <strong>order by</strong>salary <strong>desc</strong>;
@@ -89,10 +89,10 @@
 
 <div class=question id=Q4>
       
-      <h4>4. 근무년수가 18년이 넘어가는 직원의 풀네임을 근무년수가 높은 순으로 출력하라.</h4>
+      <h4>4. 근무년수가 18년이 넘어가는 직원의 풀네임(column 생성할것)을 근무년수가 높은 순으로 출력하라.</h4>
       <details>
             <summary>모범 답안</summary>
-            <strong>select</strong> first_name, last_name, round(round(sysdate-hire_date)/365, 1) as 근무년수
+            <strong>select</strong> first_name||last_name as FULL_NAME, round(round(sysdate-hire_date)/365, 1) as 근무년수
             <strong>from</strong> employees
             <strong>where</strong> round(round(sysdate-hire_date)/365, 1) > 18
             <strong>order by</strong> 근무년수 <strong>desc</strong>;
