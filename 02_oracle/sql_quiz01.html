@@ -1,6 +1,6 @@
 <html>
 <header>
-<title>SQL 기초</title>
+<title>Oracle Basic quiz 01 by html</title>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <style>
 body {font-family: 'Nanum Gothic', sans-serif;}
@@ -16,7 +16,63 @@ details {padding : 1rem; white-space: pre-wrap;}
 
 <div class='question' id='Q1'>
 
-      <h4>1. 사원 번호가 10의 배수인 사람에게 선물을 증정하는 사내 이벤트가 열렸다. 대상자를 성(LAST_NAME)을 기준으로 오름차순 정렬하여 사원번호, 이름, 성 순으로 출력하라</h4>
+      <h4>1. Salary가 15,000 이상의 직원의 Id를 오름차순으로 배열하시오. </h4>
+      
+      <details>
+            <summary>Answer</summary>
+            <strong>select</strong> salary, employee_id 
+            <strong>from</strong> employees
+            <strong>where</strong> salary >= 15000 
+            <strong>order by</strong> employee_id <strong>asc</strong>;
+
+            SALARY EMPLOYEE_ID
+            ---------- -----------
+                 24000         100
+                 17000         101
+                 17000         102
+
+      </details>
+
+</div>
+
+
+<div class=question id=Q2>
+      <h4>2. Manger_ID 가 100 이며, 01 년도에서 02 년도 사이에 입사한 직원의 Salary 가 5% 인상이 된다. 이들의 현재 Salary와 인상된 Salary, Employee_id 그리고 Manager_ID 를 출력하시오. </h4>
+      
+      <details><summary>Answer</summary>
+            <strong>select</strong> manager_id, employee_id, salary, salary*1.05 as Increased 
+            <strong>from</strong> employees
+            <strong>where</strong> manager_id = 100<strong>and</strong> hire_date <strong>between</strong> '01/01/01'<strong>and</strong>'02/12/31';
+
+
+            EMPLOYEE_ID MANAGER_ID     SALARY  INCREASED
+            ----------- ---------- ---------- ----------
+            102        100      17000      17850
+            114        100      11000      11550
+
+
+      </details>
+</div>
+<div class=question id=Q3>
+      <h4>3. Employee_ID가 100 사이의 110인 직원 중 First_name의 문자열이 짝수인 직원인 월급을 반올림하고 직원의 ID 와 반올림된 월급을 출력하라  </h4>
+      
+      <details><summary>Answer</summary>
+            <strong>select</strong> employee_Id, round(salary)
+            <strong>from</strong> employees
+            <strong>where</strong> mod(length(First_name),2) =0 <strong>and</strong> employee_id<strong>between</strong>100 <strong>and</strong>110;
+            EMPLOYEE_ID ROUND(SALARY)
+            ----------- -------------
+            100         24000
+            109          9000
+            110          8200
+
+            
+      </details>
+</div>
+
+<div class='question' id='Q4'>
+
+      <h4>4. 사원 번호가 10의 배수인 사람에게 선물을 증정하는 사내 이벤트가 열렸다. 대상자를 성(LAST_NAME)을 기준으로 오름차순 정렬하여 사원번호, 이름, 성 순으로 출력하라</h4>
       
       <details>
             <summary>모범 답안</summary>
@@ -43,9 +99,9 @@ details {padding : 1rem; white-space: pre-wrap;}
 
 </div>
 
-<div class='question' id='Q2'>
+<div class='question' id='Q5'>
 
-      <h4>2. 입사연도가 빠른 순으로 모든 사원의 성, 급여, 입사일를 출력하라</h4>
+      <h4>5. 입사연도가 빠른 순으로 모든 사원의 성, 급여, 입사일를 출력하라</h4>
       
       <details>
             <summary>모범 답안</summary>
@@ -166,12 +222,12 @@ details {padding : 1rem; white-space: pre-wrap;}
 
 </div>
 
-<div class='question' id='Q3'>
+<div class='question' id='Q6'>
 
-      <h4>3. 1번의 결과물 참고하여 입사일부터 현재까지의 일수를 salary에 더해 다음달에 상여로 지급하기로 결정하였다. 성, 급여, 상여액, 근무일수, 입사일을 출력하라</h4>
+      <h4>6. 5번의 결과물 참고하여 입사일부터 현재까지의 일수를 salary에 더해 다음달에 상여로 지급하기로 결정하였다. 성, 급여, 상여액, 근무일수, 입사일을 출력하라</h4>
       <details>
             <summary>모범 답안</summary>
-            <strong>select</strong> last_name, salary, salary+trunc(sysdate-hire_date) as new_comm, trunc(sysdate-hire_date) as working_days
+            <strong>select</strong> last_name, salary, salary+trunc(sysdate-hire_date) as new_comm, trunc(sysdate-hire_date) as working_days, hire_date
             <strong>from</strong> employees
       
             LAST_NAME                                              SALARY   NEW_COMM WORKING_DAYS HIRE_DAT
@@ -230,7 +286,7 @@ details {padding : 1rem; white-space: pre-wrap;}
             Bernstein                                                9500      15412         5912 05/03/24
             Hall                                                     9000      14763         5763 05/08/20
             Olsen                                                    8000      13541         5541 06/03/30
-                  
+
       </details>
   
 </div>
