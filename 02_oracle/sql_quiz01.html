@@ -54,17 +54,17 @@ details {padding : 1rem; white-space: pre-wrap;}
       </details>
 </div>
 <div class=question id=Q3>
-      <h4>3. Employee_ID가 100 사이의 110인 직원 중 First_name의 문자열이 짝수인 직원인 월급을 반올림하고 직원의 ID 와 반올림된 월급을 출력하라  </h4>
+      <h4>3. Employee_ID가 100 사이의 110인 직원 중 First_name의 문자열이 짝수인 직원인 월급을 100 자리 에서 반올림하고 직원의 ID 와 반올림된 월급을 출력하라  </h4>
       
       <details><summary>Answer</summary>
-            <strong>select</strong> employee_Id, round(salary)
+            <strong>select</strong> employee_Id, round(salary, 100)
             <strong>from</strong> employees
             <strong>where</strong> mod(length(First_name),2) =0 <strong>and</strong> employee_id<strong>between</strong>100 <strong>and</strong>110;
             EMPLOYEE_ID ROUND(SALARY)
             ----------- -------------
             100         24000
             109          9000
-            110          8200
+            110          8100
 
             
       </details>
