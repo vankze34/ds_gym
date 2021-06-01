@@ -1,0 +1,48 @@
+--16. 직원의 이름과 직책(job_title)을 출력(검색)
+--	단, 사용되지 않는 직책이 있다면 그 직책이 정보도 검색에 포함
+--     검색 정보 이름(FIRST_NAME)들과 job_title(직책) 
+
+	-- 문제 풀이를 위한 table의 컬럼값들 확인해 보기
+desc employees;
+desc jobs;
+
+select count(*) from employees;
+select count(*) from jobs;
+select job_id from emplpoyees;
+select distinct job_id from employees;
+select job_id from jobs;
+
+select e.first_name, j.job_title 
+from employees e, jobs j
+where e.job_id(+) = j.job_id;
+
+
+-- outer join
+--17. 직원들의 이름(first_name), 입사일, 부서명(department_name) 검색하기
+
+
+-- 단, 부서가 없는 직원이 있다면 그 직원 정보도 검색에 포함시키기
+
+select e.first_name, e.hire_date, d.department_name
+from employees e, departments d
+where e.department_id = d.department_id(+);
+
+
+
+
+-- 문제 1 : 직원의 이름(FIRST_NAME), 부서명(DEPARTMENT_NAME), 근무지(CITY) 를 부서명 오름차순으로 출력하시오. (사용되지 않는 부서명 또는 근무지가 존재한다면 포함하시오) 
+select e.first_name, d.department_name, l.city
+from employees e, departments d, locations l
+where e.department_id = d.department_id(+) and d.location_id = l.location_id(+)
+order by department_name asc;
+
+
+
+
+
+
+-- 문제 2 : 근무지별로 직원 수(NUMBER_OF_PEOPLE)를 내림차순으로 출력하시오 
+select l.city, count(e.first_name) as NUMBER_OF_PEOPLE
+from employees e, departments d, locations l
+where e.department_id = d.department_id and d.location_id = l.location_id
+group by l.city order by NUMBER_OF_PEOPLE desc; 
