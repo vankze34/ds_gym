@@ -7,7 +7,7 @@ import numpy as np
 from matplotlib import font_manager, rc
 import platform
 
-def idk():
+def idk(input):
     if platform.system() == 'Windows':
         path = 'c:/Windows/Fonts/malgun.ttf'
         font_name = font_manager.FontProperties(fname = path).get_name()
@@ -48,6 +48,7 @@ def idk():
     df_team = df[df['이름'] != "리그"].iloc[:,1:].reset_index(drop=True)
     # 공백제거
     df_team = df_team.apply(lambda x: x.str.strip())
+
     df_stat = df_team.iloc[:,:9]
 
     df_stat["팀"] = df_stat["팀"].astype(int)
@@ -58,8 +59,20 @@ def idk():
     df_stat["팀"] = df_stat["tmp"]+df_stat["팀"]
     df_stat = df_stat.iloc[:,:-1]
 
-    df_stat_array = df_stat[df_stat["이름"]=="삼성"][["팀", "완투"]].to_numpy().tolist()
+    # df_stat_cg = df_stat.groupby(["이름", "팀"])["완투"].sum().to_frame().unstack("이름").fillna(0)
+
+    # print("cr: ", input)
+    df_stat_array = df_stat[df_stat["이름"]==input][["팀", "완투"]].to_numpy().tolist()
     df_stat_array.sort()
+
+    # print(df_stat_cg)
+
+    # sns.set(font="AppleGothic", 
+    #         rc={"axes.unicode_minus":False, 'figure.figsize':(15,8)},
+    #         style='darkgrid')
+    # a = sns.lineplot(x="팀", y="완투", hue="이름", data=df_stat)
 
     return df_stat_array
 
+# if __name__ == '__main__':
+#     print(idk("해태"))
