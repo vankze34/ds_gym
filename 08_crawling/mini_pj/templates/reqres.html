@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+    <input id="baseball_input" type="text">
+    <button onclick="myAjax()">search</button>
+    <div id="chart_div" style="height: 700px;"> </div>
+
+    <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        function myAjax() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    data = JSON.parse(this.responseText);
+                    console.log(data);
+                    var view = google.visualization.arrayToDataTable([
+                        // ['이름', '팀', 'WAR', '출장', '완투', '완봉', '선발', '승', '패'],
+                        ['연도', '완투'],
+                        [parseInt(data[0][0]), parseInt(data[0][1])],
+                        [parseInt(data[1][0]), parseInt(data[1][1])],
+                        [parseInt(data[2][0]), parseInt(data[2][1])],
+                        [parseInt(data[3][0]), parseInt(data[3][1])],
+                        [parseInt(data[4][0]), parseInt(data[4][1])],
+                        [parseInt(data[5][0]), parseInt(data[5][1])],
+                        [parseInt(data[6][0]), parseInt(data[6][1])],
+                        [parseInt(data[7][0]), parseInt(data[7][1])],
+                        [parseInt(data[8][0]), parseInt(data[8][1])],
+                        [parseInt(data[9][0]), parseInt(data[9][1])],
+                        [parseInt(data[10][0]), parseInt(data[10][1])],
+                        [parseInt(data[11][0]), parseInt(data[11][1])],
+                        [parseInt(data[12][0]), parseInt(data[12][1])],
+                        [parseInt(data[13][0]), parseInt(data[13][1])],
+                        [parseInt(data[14][0]), parseInt(data[14][1])],
+                        [parseInt(data[15][0]), parseInt(data[15][1])],
+                        [parseInt(data[16][0]), parseInt(data[16][1])],
+                        [parseInt(data[17][0]), parseInt(data[17][1])],
+                        [parseInt(data[18][0]), parseInt(data[18][1])]
+                    ]);
+
+                    var options = {
+                        title: 'Company Performance',
+                        hAxis: { title: 'Year', titleTextStyle: { color: '#333' } },
+                        vAxis: { minValue: 0 }
+                    };
+
+                    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                    chart.draw(view, options);
+            }
+        };
+        // input = "input="+document.getElementById("baseball_input").value;
+        xhttp.open("GET", "getdata");
+        // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+        xhttp.send();
+        }
+
+    </script>
+</body>
+
+</html>
